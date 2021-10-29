@@ -1,8 +1,6 @@
 import { Todo } from "../../pages/Main/Main"
 import { TodoItem } from "../TodoItem/TodoItem"
 
-
-//todo naming of variables
 interface TodoListProps {
     todolist: Todo[],
     compliteTodo(todo: Todo): void,
@@ -11,7 +9,7 @@ interface TodoListProps {
 
 export function TodoList({ todolist, compliteTodo, deleteTodo }: TodoListProps): JSX.Element {
     const renderTodos = () => {
-        return todolist.map((todo: Todo) => {
+        return todolist.map((todo: Todo): JSX.Element => {
             return (
                 <TodoItem 
                     key={todo.id} 

@@ -9,9 +9,6 @@ export interface Todo {
     id: number
 }
 
-//todo const instead let
-//todo typisation of functions
-
 export function Main(): JSX.Element{
   const [todos, setTodos] = useState<Todo[]>([]);
   
@@ -19,7 +16,6 @@ export function Main(): JSX.Element{
   const getTodos = (): void => {
     let defaultArr: Todo[];
     const todosFromStorage = sessionStorage.hasOwnProperty('todos') ? sessionStorage.getItem('todos') : null;
-
 
     if (todosFromStorage) {
       defaultArr = JSON.parse(todosFromStorage)
@@ -64,26 +60,23 @@ export function Main(): JSX.Element{
     setTodos(newArr);
   }
 
-  function compliteTodo(value: Todo): void {
-    //todo findIndex
-    todos.forEach((todo): void => {
-      if (todo.id === value.id) {
-        todo.isComplite = !todo.isComplite ? true: false;
+  function compliteTodo(todo: Todo): void {
+    todos.forEach((elTodos): void => {
+      if (elTodos.id === todo.id) {
+        elTodos.isComplite = !elTodos.isComplite;
       }
     })
 
     setTodos([...todos]);
   }
 
-  function deleteTodo(value: Todo): void {
-    //todo filter
-    todos.forEach((todo, ind): void => {
-      if(todo.id === value.id) {
-        todos.splice(ind, 1);
-      }
-    })
-    
-    setTodos([...todos]);
+  function deleteTodo(todo: Todo): void {
+
+    const filteredTodos: Todo[] = todos.filter((elTodos): Boolean => {
+      return elTodos.id !== todo.id
+    });
+
+    setTodos([...filteredTodos]);
   }
 
   useEffect((): void => {

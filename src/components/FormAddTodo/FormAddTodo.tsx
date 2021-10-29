@@ -2,10 +2,9 @@ import { useState } from "react"
 import { Todo } from "../../pages/Main/Main";
 
 interface FormAddTodoProps {
-  createTodo(value: Todo): void
+  createTodo(todo: Todo): void
 }
 
-//todo const
 export function FormAddTodo({ createTodo }: FormAddTodoProps): JSX.Element {
     const [textInput, setTextInput] = useState<string>('');
 
