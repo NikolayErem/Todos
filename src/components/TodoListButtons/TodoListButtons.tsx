@@ -6,7 +6,7 @@ interface TodoListButtonsProps {
 
 export function TodoListButtons( { deleteAllTodos, compliteAllTodos }: TodoListButtonsProps): JSX.Element {
     return (
-        <div className = 'panel'>
+        <div className = 'todolist-buttons'>
             <button 
                 className = 'btn_blue'
                 onClick = {compliteAllTodos}

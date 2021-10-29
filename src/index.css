@@ -204,7 +204,7 @@ code {
   border-radius: 5px;
 }
 
-.panel{
+.todolist-buttons{
   padding: 20px 0;
   display: flex;
   column-gap: 30px;
