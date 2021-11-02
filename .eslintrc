@@ -1,0 +1,41 @@
+{
+    "plugins": [
+        "react"
+    ],
+    "env": {
+        "es6": true
+    },
+    "rules": {
+        // enable additional rules
+        "indent": ["warn", 4],
+        "linebreak-style": ["error", "unix"],
+        "quotes": [1, "single", { "avoidEscape": true }],
+        "semi": [2, "always"],
+
+        // override configuration set by extending "eslint:recommended"
+        "no-empty": "warn",
+        "no-cond-assign": ["error", "always"],
+
+        // disable rules from base configurations
+        "for-direction": "off",
+        "react/jsx-uses-react": "error",   
+        "react/jsx-uses-vars": "error",
+    },
+    "globals": {
+        React: true,
+        google: true,
+        mount: true,
+        mountWithRouter: true,
+        shallow: true,
+        shallowWithRouter: true,
+        context: true,
+        expect: true,
+        jsdom: true,
+        JSX: true,
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime"
+    ]
+}

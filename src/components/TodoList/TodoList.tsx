@@ -1,5 +1,5 @@
-import { Todo } from "../../pages/Main/Main"
-import { TodoItem } from "../TodoItem/TodoItem"
+import { Todo } from '../../pages/Main/Main';
+import { TodoItem } from '../TodoItem/TodoItem';
 
 interface TodoListProps {
     todolist: Todo[],
@@ -17,8 +17,8 @@ export function TodoList({ todolist, compliteTodo, deleteTodo }: TodoListProps):
                     compliteTodo = {compliteTodo} 
                     deleteTodo = {deleteTodo} 
                 />
-            )
-        })
+            );
+        });
     };
 
     return(
@@ -35,5 +35,5 @@ export function TodoList({ todolist, compliteTodo, deleteTodo }: TodoListProps):
                 {todolist.length ? renderTodos() : 'Todos are not defined'}
             </div>
         </div>
-    )
+    );
 }

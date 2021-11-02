@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { Todo } from "../../pages/Main/Main";
+import { Link } from 'react-router-dom';
+import { Todo } from '../../pages/Main/Main';
 
 interface TodoItemProps {
     todo: Todo,
@@ -17,7 +17,7 @@ export function TodoItem({todo, compliteTodo, deleteTodo}: TodoItemProps): JSX.E
     const pageParams: PageParamsProps = {
         pathname: '/task/' + todo.id,
         pageTask: todo
-    }
+    };
 
     return (
         <div className = 'item'>
@@ -44,5 +44,5 @@ export function TodoItem({todo, compliteTodo, deleteTodo}: TodoItemProps): JSX.E
                 </button>
             </div>
         </div>
-    )
+    );
 }

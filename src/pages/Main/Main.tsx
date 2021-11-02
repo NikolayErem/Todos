@@ -10,89 +10,89 @@ export interface Todo {
 }
 
 export function Main(): JSX.Element{
-  const [todos, setTodos] = useState<Todo[]>([]);
+    const [todos, setTodos] = useState<Todo[]>([]);
   
   
-  const getTodos = (): void => {
-    let defaultArr: Todo[];
-    const todosFromStorage = sessionStorage.hasOwnProperty('todos') ? sessionStorage.getItem('todos') : null;
+    const getTodos = (): void => {
+        let defaultArr: Todo[];
+        const todosFromStorage = Object.prototype.hasOwnProperty.call(sessionStorage, 'todos') ? sessionStorage.getItem('todos') : null;
 
-    if (todosFromStorage) {
-      defaultArr = JSON.parse(todosFromStorage)
-    } else {
-      defaultArr =[
-        {
-          text: 'Task 1',
-          isComplite: true,
-          id: (new Date().getTime() + 1)
-        },
-        {
-          text: 'Task 2',
-          isComplite: false,
-          id: (new Date().getTime() + 2)
-        },
-        {
-          text: 'Task 3',
-          isComplite: true,
-          id: (new Date().getTime() + 3)
+        if (todosFromStorage) {
+            defaultArr = JSON.parse(todosFromStorage);
+        } else {
+            defaultArr = [
+                {
+                    text: 'Task 1',
+                    isComplite: true,
+                    id: (new Date().getTime() + 1)
+                },
+                {
+                    text: 'Task 2',
+                    isComplite: false,
+                    id: (new Date().getTime() + 2)
+                },
+                {
+                    text: 'Task 3',
+                    isComplite: true,
+                    id: (new Date().getTime() + 3)
+                }
+            ];
         }
-      ];
+
+        setTodos(defaultArr);
+    };
+
+    function createTodo(todo: Todo): void {
+        setTodos([...todos, todo]);
     }
 
-    setTodos(defaultArr);
-  }
+    function deleteAllTodos(): void {
+        setTodos([]);
+    }
 
-  function createTodo(todo: Todo): void {
-    setTodos([...todos, todo])
-  }
+    function compliteAllTodos(): void {
+        let newArr = [...todos];
 
-  function deleteAllTodos(): void {
-    setTodos([]);
-  }
+        newArr.forEach((todo): void => {
+            todo.isComplite = true;
+        });
 
-  function compliteAllTodos(): void {
-    let newArr = [...todos]
+        setTodos(newArr);
+    }
 
-    newArr.forEach((todo): void => {
-      todo.isComplite = true;
-    })
+    function compliteTodo(todo: Todo): void {
+        todos.forEach((elTodos): void => {
+            if (elTodos.id === todo.id) {
+                elTodos.isComplite = !elTodos.isComplite;
+            }
+        });
 
-    setTodos(newArr);
-  }
+        setTodos([...todos]);
+    }
 
-  function compliteTodo(todo: Todo): void {
-    todos.forEach((elTodos): void => {
-      if (elTodos.id === todo.id) {
-        elTodos.isComplite = !elTodos.isComplite;
-      }
-    })
+    function deleteTodo(todo: Todo): void {
 
-    setTodos([...todos]);
-  }
+        const filteredTodos: Todo[] = todos.filter((elTodos): Boolean => {
+            return elTodos.id !== todo.id;
+        });
 
-  function deleteTodo(todo: Todo): void {
+        setTodos([...filteredTodos]);
+    }
 
-    const filteredTodos: Todo[] = todos.filter((elTodos): Boolean => {
-      return elTodos.id !== todo.id
-    });
+    useEffect((): void => {
+        getTodos();
+    }, []);
 
-    setTodos([...filteredTodos]);
-  }
+    useEffect((): void => {
+        sessionStorage.setItem('todos', JSON.stringify(todos));
+    }, [todos]);
 
-  useEffect((): void => {
-    getTodos();
-  }, [])
-
-  useEffect((): void => {
-    sessionStorage.setItem('todos', JSON.stringify(todos))
-  }, [todos])
-
-  return (
-      <div>
-        <h1>Todos</h1>
-        <FormAddTodo createTodo = {createTodo}/>
-        <TodoList todolist = {todos} compliteTodo = {compliteTodo} deleteTodo = {deleteTodo}/>
-        <TodoListButtons deleteAllTodos = {deleteAllTodos} compliteAllTodos={compliteAllTodos}/>
-      </div>
+    return (
+        <div>
+            <h1>Todos</h1>
+            <FormAddTodo createTodo = {createTodo}/>
+            <TodoList todolist = {todos} compliteTodo = {compliteTodo} deleteTodo = {deleteTodo}/>
+            <TodoListButtons deleteAllTodos = {deleteAllTodos} compliteAllTodos={compliteAllTodos}/>
+        </div>
     );
 }

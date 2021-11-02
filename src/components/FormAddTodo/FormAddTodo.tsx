@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { Todo } from "../../pages/Main/Main";
+import { useState } from 'react';
+import { Todo } from '../../pages/Main/Main';
 
 interface FormAddTodoProps {
   createTodo(todo: Todo): void
@@ -14,13 +14,13 @@ export function FormAddTodo({ createTodo }: FormAddTodoProps): JSX.Element {
 
     function createTodoHandler(): void {
         if (textInput.trim()) {
-          const newTodo: Todo = {
-            text: textInput,
-            isComplite: false,
-            id: new Date().getTime()
-          }
+            const newTodo: Todo = {
+                text: textInput,
+                isComplite: false,
+                id: new Date().getTime()
+            };
 
-          createTodo(newTodo);
+            createTodo(newTodo);
         }
 
         setTextInput('');
@@ -36,7 +36,7 @@ export function FormAddTodo({ createTodo }: FormAddTodoProps): JSX.Element {
                     className = 'form__input'
                     placeholder = 'What do you want to do?'
                     value = {textInput} 
-                    onChange = {(event) => {getInputText (event.target.value)}} 
+                    onChange = {(event) => {getInputText (event.target.value);}}
                 />
                 <p>Enter what you want to procastinate</p>
                 <button onClick={createTodoHandler} className = 'btn_blue'>
@@ -44,5 +44,5 @@ export function FormAddTodo({ createTodo }: FormAddTodoProps): JSX.Element {
                 </button>
             </div>
         </div>
-    )
+    );
 }

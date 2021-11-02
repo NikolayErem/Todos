@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { Redirect } from "react-router";
+import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
 
 interface TaskPageProps{
     history: any,
@@ -12,7 +12,7 @@ interface TaskPageProps{
 export function TaskPage(props: TaskPageProps): JSX.Element {
     console.log(props);
     
-    const { pageTask } = props.location
+    const { pageTask } = props.location;
     
     if(props.location.pageTask){
         return (
@@ -38,8 +38,8 @@ export function TaskPage(props: TaskPageProps): JSX.Element {
                     </p>
                 </div>
             </div>
-        )
+        );
     } else {
-        return <Redirect to = '/' />
+        return (<Redirect to = '/' />);
     }
 }

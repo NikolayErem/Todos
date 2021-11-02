@@ -20,5 +20,5 @@ export function TodoListButtons( { deleteAllTodos, compliteAllTodos }: TodoListB
                 Delete All
             </button>
         </div>
-    )
+    );
 }
