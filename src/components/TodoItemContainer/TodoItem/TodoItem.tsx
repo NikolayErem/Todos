@@ -1,44 +1,39 @@
 import { Link } from 'react-router-dom';
-import { Todo } from '../../pages/Main/Main';
+import { Todo } from '../../../pages/MainContainer/MainContainer';
 
 interface TodoItemProps {
     todo: Todo,
-    compliteTodo(todo: Todo): void,
-    deleteTodo(todo: Todo): void
+    changeCheckTodo(todo: Todo): void,
+    deleteTodo(todoId: string | null): void,
+    selectTodo(todo: Todo): void
 }
 
 interface PageParamsProps{
-    pathname: string,
-    pageTask: Todo
+    pathname: string
 }
 
-export function TodoItem({todo, compliteTodo, deleteTodo}: TodoItemProps): JSX.Element {
-
-    const pageParams: PageParamsProps = {
-        pathname: '/task/' + todo.id,
-        pageTask: todo
-    };
+export function TodoItem({deleteTodo, changeCheckTodo, todo, selectTodo}: TodoItemProps): JSX.Element {
 
     return (
         <div className = 'item'>
-            <Link to = {pageParams} className='item__link'>
+            <Link to = '/task' onClick = {() => {selectTodo(todo);}} className = 'item__link'>
                 <h3>
                     {todo.text}
                 </h3>
             </Link>
             <p>
-                {todo.isComplite ? 'Complited' : 'Not complited'}
+                {todo.isCheck ? 'Complited' : 'Not complited'}
             </p>
             <div className = 'item__buttons'>
                 <button 
                     className = 'btn_blue'
-                    onClick = {() => compliteTodo(todo) }
+                    onClick = {() => changeCheckTodo(todo)}
                 >
                     Complite
                 </button>
                 <button 
                     className = 'btn_red'
-                    onClick = {() => deleteTodo(todo)}
+                    onClick = {() => deleteTodo(todo.id)}
                 >
                     Delete
                 </button>
