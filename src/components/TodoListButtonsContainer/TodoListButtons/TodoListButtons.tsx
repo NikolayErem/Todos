@@ -1,10 +1,12 @@
 interface TodoListButtonsProps {
-    deleteAllTodos(): void,
-    compliteAllTodos(): void
+    deleteAllTodos(): Promise<void>,
+    compliteAllTodos(): Promise<void>
 }
 
 
-export function TodoListButtons( { deleteAllTodos, compliteAllTodos }: TodoListButtonsProps): JSX.Element {
+export function TodoListButtons({deleteAllTodos, compliteAllTodos}: TodoListButtonsProps): JSX.Element {
+
+   
     return (
         <div className = 'todolist-buttons'>
             <button 
@@ -20,5 +22,5 @@ export function TodoListButtons( { deleteAllTodos, compliteAllTodos }: TodoListB
                 Delete All
             </button>
         </div>
-    )
+    );
 }
