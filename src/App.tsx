@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 import { Main } from './pages/Main/Main';
 import { TaskPage } from './pages/TaskPage/TaskPage';
-import './App.css';
+import './App.css'; 
 
 function App(): JSX.Element {
   return (
